@@ -1,7 +1,40 @@
-- hosts: controller
+- hosts: all
   remote_user: vagrant
   become: yes
   tasks:
     - name: Ajustanto timezone do servidor
       timezone: 
         name: America/Sao_Paulo
+
+#CONTROLER
+- hosts: controller
+  remote_user: vagrant
+  become: yes
+  tasks:
+   - name: Criando o Arquivo Info
+     lineinfile:
+       path: /tmp/info
+       line: SERVIDOR ANSIBLE CONTROLLER
+       create: yes
+
+#DATABASES
+- hosts: databases
+  remote_user: vagrant
+  become: yes
+  tasks:
+   - name: Criando o Arquivo Info
+     lineinfile:
+       path: /tmp/info
+       line: SERVIDOR DE BANCO DE DADOS MYSQL
+       create: yes
+
+#WEBSERVERS
+- hosts: Blog
+  remote_user: vagrant
+  become: yes
+  tasks:
+   - name: Criando o Andquivo Info
+     lineinfile:
+       path: /tmp/info
+       line: SERVIDOR DO BLOG WORDPRESS
+       create: yes
